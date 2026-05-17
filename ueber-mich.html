@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Über mich – Daniel Schlichting</title>
+<meta name="description" content="Ich habe Verwaltung gelernt, gelebt, geprüft und gelehrt. In dieser Reihenfolge.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400;1,600&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+  --bordeaux: #6B1F3A;
+  --bordeaux-dark: #4A1428;
+  --sienna: #7A2030;
+  --terra: #C47B55;
+  --terra-light: #D9956F;
+  --cream: #FAF0E8;
+  --cream-dark: #F0E5D8;
+  --dark: #1C1C1C;
+  --mid: #9E3A5A;
+  --gray: #888;
+  --light-gray: #F5F0EC;
+}
+
+html { scroll-behavior: smooth; }
+body { font-family: 'DM Sans', sans-serif; background: var(--cream); color: var(--dark); }
+
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  padding: 0 40px; display: flex; align-items: center;
+  justify-content: space-between; height: 64px;
+  background: rgba(250,240,232,0.92); backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(107,31,58,0.08);
+}
+
+.nav-logo { font-family: 'Cormorant Garamond', serif; font-size: 1.45rem; font-weight: 700; color: var(--bordeaux); text-decoration: none; letter-spacing: 0.01em; }
+.nav-links { display: flex; gap: 32px; list-style: none; }
+.nav-links a { font-size: 0.78rem; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: var(--dark); text-decoration: none; opacity: 0.6; transition: opacity 0.2s; }
+.nav-links a:hover { opacity: 1; color: var(--bordeaux); }
+.nav-cta { background: var(--bordeaux); color: white !important; opacity: 1 !important; padding: 8px 18px; border-radius: 4px; font-size: 0.72rem !important; }
+
+/* PAGE HEADER */
+.page-header {
+  background: var(--bordeaux);
+  padding: 140px 80px 80px;
+  position: relative;
+  overflow: hidden;
+}
+
+.page-header::after {
+  content: '';
+  position: absolute;
+  bottom: -80px; right: -80px;
+  width: 320px; height: 320px;
+  background: rgba(196,123,85,0.1);
+  border-radius: 50%;
+}
+
+.ph-eyebrow { font-size: 0.65rem; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: var(--terra-light); margin-bottom: 16px; }
+.ph-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(2.4rem, 5vw, 4rem); font-weight: 600; color: white; line-height: 1.1; margin-bottom: 12px; }
+.ph-title em { font-style: italic; color: var(--terra-light); }
+.ph-sub { font-size: 1rem; color: rgba(255,255,255,0.55); font-family: 'Cormorant Garamond', serif; font-style: italic; }
+
+/* PHILOSOPHIE */
+.philosophie {
+  padding: 80px 80px 60px;
+  max-width: 760px;
+}
+
+.phil-label { font-size: 0.65rem; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: var(--terra); margin-bottom: 16px; }
+
+.phil-motto {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(2rem, 3vw, 2.8rem);
+  font-weight: 600;
+  font-style: italic;
+  color: var(--bordeaux);
+  margin-bottom: 32px;
+  line-height: 1.2;
+}
+
+.phil-text { font-size: 0.95rem; line-height: 1.85; color: var(--dark); opacity: 0.85; margin-bottom: 20px; }
+
+.phil-closing {
+  margin-top: 40px;
+  padding-top: 32px;
+  border-top: 1px solid rgba(107,31,58,0.12);
+}
+
+.phil-closing p {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.3rem;
+  font-style: italic;
+  color: var(--bordeaux);
+  margin-bottom: 8px;
+  line-height: 1.5;
+}
+
+.phil-closing p strong { font-weight: 700; font-style: italic; }
+
+/* STATIONEN */
+.stationen { background: var(--cream-dark); padding: 80px; }
+
+.st-header { margin-bottom: 60px; }
+.st-eyebrow { font-size: 0.65rem; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: var(--terra); margin-bottom: 12px; }
+.st-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(2rem, 3vw, 2.8rem); font-weight: 600; color: var(--bordeaux); }
+
+.station {
+  display: grid;
+  grid-template-columns: 120px 1fr;
+  gap: 0;
+  margin-bottom: 0;
+  border-bottom: 1px solid rgba(107,31,58,0.1);
+}
+
+.station:last-child { border-bottom: none; }
+
+.station-left {
+  padding: 40px 0;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 8px;
+}
+
+.station-num {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 3rem;
+  font-weight: 300;
+  color: var(--terra);
+  opacity: 0.4;
+  line-height: 1;
+}
+
+.station-verb {
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--bordeaux);
+}
+
+.station-right {
+  padding: 40px 0 40px 40px;
+  border-left: 1px solid rgba(107,31,58,0.1);
+}
+
+.station-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.6rem;
+  font-weight: 600;
+  color: var(--bordeaux);
+  margin-bottom: 16px;
+}
+
+.station-text { font-size: 0.9rem; line-height: 1.85; color: var(--dark); opacity: 0.8; margin-bottom: 12px; }
+
+.station-highlight {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.05rem;
+  font-style: italic;
+  color: var(--bordeaux);
+  font-weight: 600;
+  margin-top: 8px;
+}
+
+/* ABSCHLUSS */
+.abschluss {
+  background: var(--bordeaux);
+  padding: 80px;
+  text-align: center;
+}
+
+.abschluss p {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.3rem;
+  color: rgba(255,255,255,0.7);
+  margin-bottom: 8px;
+  line-height: 1.5;
+}
+
+.abschluss p.strong { font-size: 1.6rem; color: white; font-weight: 600; font-style: italic; }
+.abschluss p.strongest { font-size: 2rem; color: var(--terra-light); font-weight: 700; font-style: italic; margin-top: 4px; }
+
+footer {
+  background: var(--dark); padding: 40px 80px;
+  display: flex; justify-content: space-between; align-items: center;
+}
+
+.footer-logo { font-family: 'Cormorant Garamond', serif; font-size: 1.1rem; font-weight: 600; color: white; }
+.footer-links { display: flex; gap: 24px; list-style: none; }
+.footer-links a { font-size: 0.75rem; color: rgba(255,255,255,0.4); text-decoration: none; transition: color 0.2s; }
+.footer-links a:hover { color: white; }
+.footer-copy { font-size: 0.72rem; color: rgba(255,255,255,0.25); }
+
+.reveal { opacity: 0; transform: translateY(20px); transition: opacity 0.7s ease, transform 0.7s ease; }
+.reveal.visible { opacity: 1; transform: translateY(0); }
+
+@media (max-width: 768px) {
+  nav { padding: 0 20px; }
+  .nav-links { display: none; }
+  .page-header { padding: 100px 24px 60px; }
+  .philosophie { padding: 48px 24px; }
+  .stationen { padding: 48px 24px; }
+  .station { grid-template-columns: 80px 1fr; }
+  .station-right { padding: 32px 0 32px 24px; }
+  .abschluss { padding: 60px 24px; }
+  footer { padding: 32px 24px; flex-direction: column; gap: 20px; text-align: center; }
+  .footer-links { flex-wrap: wrap; justify-content: center; }
+}
+
+.footer-social { display: flex; gap: 16px; align-items: center; }
+.social-icon { color: rgba(255,255,255,0.4); transition: color 0.2s; display: flex; align-items: center; text-decoration: none; }
+.social-icon:hover { color: #C47B55; }
+
+.foto-wrap {
+  padding: 0 80px 60px;
+  max-width: 760px;
+  margin: 0 auto;
+}
+.foto-container {
+  display: flex;
+  align-items: center;
+  gap: 48px;
+  padding: 40px;
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 20px rgba(107,31,58,0.06);
+}
+.foto-img {
+  width: 180px;
+  height: 180px;
+  border-radius: 50%;
+  object-fit: cover;
+  object-position: center top;
+  flex-shrink: 0;
+  border: 4px solid var(--cream-dark);
+}
+.foto-text {
+  font-size: 0.95rem;
+  line-height: 1.85;
+  color: var(--dark);
+  opacity: 0.8;
+}
+
+.nav-logo-wrap { display: flex; align-items: center; gap: 6px; text-decoration: none; }
+.nav-logo-img { width: 40px; height: 40px; object-fit: contain; }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="nav-logo-wrap"><img src="logo-ds.png" alt="" class="nav-logo-img"><span class="nav-logo">Daniel Schlichting</span></a>
+  <ul class="nav-links">
+    <li><a href="ueber-mich.html">Über mich</a></li>
+    <li><a href="projekte.html">Projekte</a></li>
+    <li><a href="newsletter.html">Newsletter</a></li>
+    <li><a href="archiv.html">Archiv</a></li>
+    <li><a href="kontakt.html">Kontakt</a></li>
+    <li><a href="newsletter.html" class="nav-cta">Schlicht Kommunal</a></li>
+  </ul>
+</nav>
+
+<div class="page-header">
+  <div class="ph-eyebrow">Über mich</div>
+  <h1 class="ph-title">Ich habe Verwaltung gelernt,<br>gelebt, geprüft und <em>gelehrt.</em></h1>
+  <p class="ph-sub">In dieser Reihenfolge.</p>
+</div>
+
+<section class="philosophie reveal">
+  <div class="phil-label">Grundphilosophie</div>
+  <div class="phil-motto">Weil es richtig ist.</div>
+
+  <p class="phil-text">Ich bin Dozent an der Verwaltungsakademie Bordesholm. Ich bilde Verwaltungsfachangestellte aus und begleite Verwaltungsmitarbeiter auf dem Weg in Führungspositionen. Mein Schwerpunkt: Finanzen, Haushalt, Betriebswirtschaft.</p>
+  <p class="phil-text">Daneben gebe ich Seminare für die SGK Schleswig-Holstein – für gewählte Kommunalpolitiker, die verstehen wollen, wie ihre Gemeinde wirklich funktioniert.</p>
+  <p class="phil-text">Das mache ich seit Jahren. Und es macht mir Freude. Jeden Tag.</p>
+  <p class="phil-text">Irgendwann habe ich aufgehört mich zu fragen warum. Die Antwort war immer dieselbe: weil es sinnvoll ist. Weil Menschen, die Verwaltung verstehen, bessere Entscheidungen treffen. Weil Kommunen, die gut aufgestellt sind, das Leben der Menschen vor Ort verbessern.</p>
+  <p class="phil-text">Und dann gibt es die Dinge, die über den Beruf hinausgehen. 17 Jahre Gewerkschaft – weil Kolleginnen und Kollegen im öffentlichen Dienst jemanden verdienen, der für sie einsteht. Kommunalpolitisches Engagement – weil Demokratie vor Ort entschieden wird und nicht in Berlin. Die Überzeugung, dass Verwaltung kein Selbstzweck ist – sondern das Versprechen einer Gesellschaft an ihre Mitmenschen.</p>
+
+  <div class="phil-closing">
+    <p>Das tue ich nicht, weil es mir nützt.</p>
+    <p><strong>Weil mir der Mensch wichtig ist.</strong></p>
+    <p><strong>Weil es richtig ist.</strong></p>
+  </div>
+</section>
+
+
+<section class="foto-wrap reveal">
+  <div class="foto-container">
+    <img src="foto-daniel.jpg" alt="Daniel Schlichting" class="foto-img">
+    <p class="foto-text">1984 in Eutin geboren, in Scharbeutz an der Ostseeküste aufgewachsen. Nach dem Studium nach Lübeck gezogen – dort lebe ich seit zwölf Jahren mit meinem Mann zusammen. Wir haben ein Pflegekind.</p>
+  </div>
+</section>
+
+<section class="stationen">
+  <div class="st-header reveal">
+    <div class="st-eyebrow">Mein Weg</div>
+    <h2 class="st-title">Fünf Stationen.</h2>
+  </div>
+
+  <div class="station reveal">
+    <div class="station-left">
+      <div class="station-num">①</div>
+      <div class="station-verb">Lernen</div>
+    </div>
+    <div class="station-right">
+      <div class="station-title">Lernen</div>
+      <p class="station-text">Ich habe nicht den direkten Weg genommen. Zuerst der Sozialpädagogische Assistent – weil Menschen mich interessiert haben. Dann die Ausbildung zum Verwaltungsfachangestellten – weil ich verstehen wollte, wie die Dinge wirklich funktionieren. Das Abitur nachgeholt. Studium zum Diplom-Verwaltungswirt.</p>
+      <p class="station-highlight">Nicht der direkteste Weg. Aber immer der richtige.</p>
+    </div>
+  </div>
+
+  <div class="station reveal">
+    <div class="station-left">
+      <div class="station-num">②</div>
+      <div class="station-verb">Leben</div>
+    </div>
+    <div class="station-right">
+      <div class="station-title">Leben</div>
+      <p class="station-text">Kreisverwaltung Herzogtum Lauenburg. Kommunalaufsicht, Feuerwehren, Rettungsdienst, Sozialamt, Beschaffung. Verwaltung in ihrer ganzen Breite – nah an den Menschen, die sie täglich erleben.</p>
+      <p class="station-text">Dann die Beschaffungsstelle der Universität Lübeck. Aufgebaut. Fünf Jahre geleitet. Gelernt, was es bedeutet, wenn Strukturen nicht einfach da sind, sondern gemacht werden müssen.</p>
+    </div>
+  </div>
+
+  <div class="station reveal">
+    <div class="station-left">
+      <div class="station-num">③</div>
+      <div class="station-verb">Prüfen</div>
+    </div>
+    <div class="station-right">
+      <div class="station-title">Prüfen</div>
+      <p class="station-text">Kommunalaufsicht beim Kreis – die Perspektive von außen auf das, was Kommunen tun und lassen. Dann der Landesrechnungshof. Zwei Jahre. Genug, um zu verstehen, was passiert, wenn niemand hinschaut.</p>
+      <p class="station-highlight">Prüfen bedeutet nicht kritisieren. Es bedeutet verstehen wollen, was wirklich ist – nicht was sein soll.</p>
+    </div>
+  </div>
+
+  <div class="station reveal">
+    <div class="station-left">
+      <div class="station-num">④</div>
+      <div class="station-verb">Lehren</div>
+    </div>
+    <div class="station-right">
+      <div class="station-title">Lehren</div>
+      <p class="station-text">Seit sechs Jahren an der Verwaltungsakademie Bordesholm. Verwaltungsfachangestellte, die heute lernen, was sie morgen verantworten. Führungskräfte, die Verwaltung neu denken wollen.</p>
+      <p class="station-text">Parallel dazu Seminare für die SGK Schleswig-Holstein – für gewählte Kommunalpolitiker, die verstehen wollen, wie ihre Gemeinde wirklich funktioniert. Zwei verschiedene Zielgruppen. Dieselbe Überzeugung: Wer versteht, was er tut, tut es besser.</p>
+    </div>
+  </div>
+
+  <div class="station reveal">
+    <div class="station-left">
+      <div class="station-num">⑤</div>
+      <div class="station-verb">Gestalten</div>
+    </div>
+    <div class="station-right">
+      <div class="station-title">Gestalten</div>
+      <p class="station-text">Gemeinschaft fühlt sich erst richtig an, wenn man Teil von ihr ist. Das habe ich früh gelernt.</p>
+      <p class="station-text">Jugendfeuerwehr. DLRG. Kein Kalkül – einfach die Überzeugung, dass Gemeinschaft jemanden braucht, der anpackt.</p>
+      <p class="station-text">17 Jahre Gewerkschaft. Landesjugendleiter, stellvertretender Bundesvorsitzender der komba Jugend, Landesvorsitzender. Für Kolleginnen und Kollegen, die jeden Tag Großartiges leisten und selten dafür gesehen werden.</p>
+      <p class="station-text">Kommunalpolitik. SGK. Und 2023 die Kandidatur in Preetz – über die SPD, aber mit einer klaren Haltung: ich trete an, um der Sache zu dienen, nicht einer Partei. Als Bürgermeister für alle Bürgerinnen und Bürger.</p>
+      <p class="station-highlight">Ich habe verloren. Und ich würde es wieder tun.</p>
+    </div>
+  </div>
+</section>
+
+<section class="netzwerk reveal" style="padding: 40px 80px; max-width: 760px; margin: 0 auto;">
+  <p style="font-family: 'Cormorant Garamond', serif; font-size: 1.25rem; font-style: italic; color: #6B1F3A; line-height: 1.7;">
+    Aus all dem ist ein Netzwerk entstanden das ich nie bewusst aufgebaut habe – sondern das gewachsen ist weil ich immer dort war wo es drauf ankam.
+  </p>
+</section>
+
+<section class="persoenlich reveal" style="padding: 60px 80px; max-width: 760px; margin: 0 auto;">
+  <div style="font-size: 0.65rem; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: #C47B55; margin-bottom: 16px;">Privat</div>
+  <p style="font-size: 0.95rem; line-height: 1.85; color: #1C1C1C; opacity: 0.8;">1984 in Eutin geboren, in Scharbeutz an der Ostseeküste aufgewachsen. Nach dem Studium nach Lübeck gezogen – dort lebe ich seit zwölf Jahren mit meinem Mann zusammen. Wir haben ein Pflegekind.</p>
+</section>
+
+<section class="abschluss reveal">
+  <p>Das tue ich nicht, weil es mir nützt.</p>
+  <p class="strong">Weil mir der Mensch wichtig ist.</p>
+  <p class="strongest">Weil es richtig ist.</p>
+</section>
+
+<footer>
+  <div class="footer-logo">Daniel Schlichting</div>
+  <ul class="footer-links">
+    <li><a href="ueber-mich.html">Über mich</a></li>
+    <li><a href="projekte.html">Projekte</a></li>
+    <li><a href="newsletter.html">Newsletter</a></li>
+    <li><a href="archiv.html">Archiv</a></li>
+    <li><a href="kontakt.html">Kontakt</a></li>
+    <li><a href="impressum.html">Impressum</a></li>
+  </ul>
+  
+  <div class="footer-social">
+    <a href="https://www.instagram.com/danielschlichting.de" target="_blank" rel="noopener" class="social-icon" aria-label="Instagram">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
+    </a>
+    <a href="https://www.linkedin.com/in/daniel-schlichting-67a12716a" target="_blank" rel="noopener" class="social-icon" aria-label="LinkedIn">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7H10V9h4v2a6 6 0 0 1 6-3zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg>
+    </a>
+  
+    <a href="https://www.facebook.com/share/1CPQHWAY4w/" target="_blank" rel="noopener" class="social-icon" aria-label="Facebook">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+    </a>
+  </div>
+  <span class="footer-copy">© 2026 Daniel Schlichting</span>
+</footer>
+
+<script>
+const reveals = document.querySelectorAll('.reveal');
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach((entry, i) => {
+    if (entry.isIntersecting) {
+      setTimeout(() => entry.target.classList.add('visible'), i * 100);
+      observer.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.05 });
+reveals.forEach(el => observer.observe(el));
+</script>
+
+</body>
+</html>

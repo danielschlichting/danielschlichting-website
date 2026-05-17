@@ -1,0 +1,977 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Daniel Schlichting – Weil es richtig ist.</title>
+<meta name="description" content="Lecturer, Gründer, Kommunalmensch. Ich habe Verwaltung gelernt, gelebt, geprüft und gelehrt.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400;1,600&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+  --bordeaux: #6B1F3A;
+  --bordeaux-dark: #4A1428;
+  --bordeaux-light: #8B2E4A;
+  --sienna: #7A2030;
+  --terra: #C47B55;
+  --terra-light: #D9956F;
+  --cream: #FAF0E8;
+  --cream-dark: #F0E5D8;
+  --dark: #1C1C1C;
+  --mid: #9E3A5A;
+  --gray: #888;
+  --light-gray: #F5F0EC;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'DM Sans', sans-serif;
+  background: var(--cream);
+  color: var(--dark);
+  overflow-x: hidden;
+}
+
+/* ── NAVIGATION ── */
+nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 100;
+  padding: 0 40px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 64px;
+  background: rgba(250,240,232,0.92);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(107,31,58,0.08);
+  transition: all 0.3s ease;
+}
+
+.nav-logo {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.45rem;
+  font-weight: 700;
+  color: var(--bordeaux);
+  text-decoration: none;
+  letter-spacing: 0.01em;
+  position: relative;
+  padding-bottom: 2px;
+}
+
+.nav-logo::after {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 0;
+  width: 100%; height: 1.5px;
+  background: var(--terra);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.3s ease;
+}
+
+.nav-logo:hover::after { transform: scaleX(1); }
+
+.nav-links {
+  display: flex;
+  gap: 32px;
+  list-style: none;
+}
+
+.nav-links a {
+  font-size: 0.78rem;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--dark);
+  text-decoration: none;
+  opacity: 0.6;
+  transition: opacity 0.2s;
+}
+
+.nav-links a:hover { opacity: 1; color: var(--bordeaux); }
+
+.nav-cta {
+  background: var(--bordeaux);
+  color: white !important;
+  opacity: 1 !important;
+  padding: 8px 18px;
+  border-radius: 4px;
+  font-size: 0.72rem !important;
+}
+
+.nav-cta:hover { background: var(--bordeaux-dark); }
+
+/* ── HERO ── */
+.hero {
+  min-height: 100vh;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  padding-top: 64px;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-left {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 80px 60px 80px 80px;
+  position: relative;
+  z-index: 2;
+}
+
+.hero-eyebrow {
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--terra);
+  margin-bottom: 24px;
+  opacity: 0;
+  animation: fadeUp 0.8s ease 0.2s forwards;
+}
+
+.hero-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(2.4rem, 4vw, 3.6rem);
+  font-weight: 600;
+  line-height: 1.15;
+  color: var(--bordeaux);
+  margin-bottom: 24px;
+  opacity: 0;
+  animation: fadeUp 0.8s ease 0.4s forwards;
+}
+
+.hero-title em {
+  font-style: italic;
+  color: var(--sienna);
+}
+
+.hero-body {
+  font-size: 1rem;
+  line-height: 1.75;
+  color: var(--dark);
+  opacity: 0.8;
+  max-width: 420px;
+  margin-bottom: 40px;
+  opacity: 0;
+  animation: fadeUp 0.8s ease 0.6s forwards;
+}
+
+.hero-motto {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.1rem;
+  font-style: italic;
+  color: var(--bordeaux);
+  opacity: 0;
+  animation: fadeUp 0.8s ease 0.8s forwards;
+  margin-bottom: 40px;
+}
+
+.hero-actions {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+  opacity: 0;
+  animation: fadeUp 0.8s ease 1s forwards;
+}
+
+.btn-primary {
+  background: var(--bordeaux);
+  color: white;
+  padding: 14px 28px;
+  border-radius: 4px;
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  text-decoration: none;
+  transition: background 0.2s, transform 0.2s;
+}
+
+.btn-primary:hover {
+  background: var(--bordeaux-dark);
+  transform: translateY(-1px);
+}
+
+.btn-secondary {
+  color: var(--bordeaux);
+  font-size: 0.82rem;
+  font-weight: 500;
+  text-decoration: none;
+  border-bottom: 1px solid var(--bordeaux);
+  padding-bottom: 2px;
+  transition: opacity 0.2s;
+}
+
+.btn-secondary:hover { opacity: 0.7; }
+
+.hero-right {
+  background: var(--bordeaux);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 80px 60px;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-right::before {
+  content: '';
+  position: absolute;
+  top: -100px; right: -100px;
+  width: 400px; height: 400px;
+  background: rgba(255,255,255,0.04);
+  border-radius: 50%;
+}
+
+.hero-right::after {
+  content: '';
+  position: absolute;
+  bottom: -80px; left: -80px;
+  width: 300px; height: 300px;
+  background: rgba(196,123,85,0.12);
+  border-radius: 50%;
+}
+
+.hero-quote {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(1.8rem, 3vw, 2.8rem);
+  font-weight: 300;
+  color: white;
+  line-height: 1.3;
+  text-align: center;
+  position: relative;
+  z-index: 2;
+  opacity: 0;
+  animation: fadeUp 0.8s ease 0.6s forwards;
+}
+
+.hero-quote strong {
+  display: block;
+  font-weight: 600;
+  color: var(--terra-light);
+  font-style: italic;
+  margin-top: 8px;
+}
+
+.hero-vita {
+  margin-top: 48px;
+  text-align: center;
+  position: relative;
+  z-index: 2;
+  opacity: 0;
+  animation: fadeUp 0.8s ease 0.9s forwards;
+}
+
+.hero-vita-text {
+  font-size: 0.82rem;
+  color: rgba(255,255,255,0.5);
+  letter-spacing: 0.06em;
+  line-height: 1.8;
+}
+
+.hero-vita-text span {
+  color: rgba(255,255,255,0.8);
+  font-weight: 500;
+}
+
+/* ── NEWSLETTER STRIP ── */
+.newsletter-strip {
+  background: var(--cream-dark);
+  border-top: 1px solid rgba(107,31,58,0.1);
+  border-bottom: 1px solid rgba(107,31,58,0.1);
+  padding: 48px 80px;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 40px;
+  align-items: center;
+}
+
+.nl-info {}
+
+.nl-label {
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--terra);
+  margin-bottom: 6px;
+}
+
+.nl-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.6rem;
+  font-weight: 600;
+  color: var(--bordeaux);
+  margin-bottom: 4px;
+}
+
+.nl-desc {
+  font-size: 0.85rem;
+  color: var(--gray);
+  line-height: 1.6;
+}
+
+.nl-form {
+  display: flex;
+  gap: 10px;
+}
+
+.nl-input {
+  padding: 12px 18px;
+  border: 1px solid rgba(107,31,58,0.2);
+  border-radius: 4px;
+  font-size: 0.85rem;
+  font-family: 'DM Sans', sans-serif;
+  background: white;
+  color: var(--dark);
+  width: 260px;
+  transition: border-color 0.2s;
+}
+
+.nl-input:focus {
+  outline: none;
+  border-color: var(--bordeaux);
+}
+
+.nl-btn {
+  background: var(--sienna);
+  color: white;
+  border: none;
+  padding: 12px 24px;
+  border-radius: 4px;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  cursor: pointer;
+  font-family: 'DM Sans', sans-serif;
+  transition: background 0.2s;
+  white-space: nowrap;
+}
+
+.nl-btn:hover { background: var(--bordeaux-dark); }
+
+/* ── PROJEKTE ── */
+.projekte {
+  padding: 100px 80px;
+}
+
+.section-eyebrow {
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--terra);
+  margin-bottom: 12px;
+}
+
+.section-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(2rem, 3vw, 2.8rem);
+  font-weight: 600;
+  color: var(--bordeaux);
+  margin-bottom: 16px;
+}
+
+.section-body {
+  font-size: 0.95rem;
+  color: var(--gray);
+  line-height: 1.7;
+  max-width: 560px;
+  margin-bottom: 60px;
+}
+
+.projekte-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2px;
+  background: rgba(107,31,58,0.08);
+  border-radius: 12px;
+  overflow: hidden;
+  margin-bottom: 2px;
+}
+
+.projekt-card {
+  background: white;
+  padding: 36px 32px;
+  transition: background 0.2s;
+  text-decoration: none;
+  color: inherit;
+  display: block;
+}
+
+.projekt-card:hover { background: var(--light-gray); }
+
+.projekt-sub {
+  font-size: 0.68rem;
+  color: var(--gray);
+  letter-spacing: 0.04em;
+  margin-bottom: 8px;
+  opacity: 0.7;
+}
+.projekt-icon { font-size: 1.8rem; margin-bottom: 16px; display: block; }
+
+.projekt-name {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: var(--bordeaux);
+  margin-bottom: 6px;
+}
+
+.projekt-tagline {
+  font-size: 0.78rem;
+  color: var(--terra);
+  font-style: italic;
+  margin-bottom: 12px;
+}
+
+.projekt-desc {
+  font-size: 0.82rem;
+  color: var(--gray);
+  line-height: 1.65;
+}
+
+.projekte-personal {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2px;
+  background: rgba(107,31,58,0.04);
+  border-radius: 12px;
+  overflow: hidden;
+  opacity: 0.88;
+}
+
+.projekte-personal .projekt-card {
+  padding: 22px 24px;
+  background: var(--light-gray);
+}
+
+.projekte-personal .projekt-card:hover { background: #EDE8E2; }
+.projekte-personal .projekt-sub {
+  font-size: 0.68rem;
+  color: var(--gray);
+  letter-spacing: 0.04em;
+  margin-bottom: 8px;
+  opacity: 0.7;
+}
+.projekt-icon { font-size: 1.2rem; margin-bottom: 10px; }
+.projekte-personal .projekt-name { font-size: 1rem; margin-bottom: 4px; }
+.projekte-personal .projekt-tagline { font-size: 0.7rem; margin-bottom: 8px; }
+.projekte-personal .projekt-desc { font-size: 0.76rem; }
+
+.personal-label {
+  font-size: 0.6rem;
+  color: var(--gray);
+  font-style: italic;
+  margin: 40px 0 10px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  font-weight: 600;
+}
+
+/* ── ÜBER MICH TEASER ── */
+.ueber-teaser {
+  background: var(--bordeaux);
+  padding: 100px 80px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: center;
+}
+
+.ut-left {}
+
+.ut-eyebrow {
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--terra-light);
+  margin-bottom: 16px;
+}
+
+.ut-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(2rem, 3vw, 2.8rem);
+  font-weight: 600;
+  color: white;
+  line-height: 1.2;
+  margin-bottom: 24px;
+}
+
+.ut-title em { font-style: italic; color: var(--terra-light); }
+
+.ut-body {
+  font-size: 0.92rem;
+  color: rgba(255,255,255,0.65);
+  line-height: 1.75;
+  margin-bottom: 32px;
+}
+
+.ut-link {
+  color: var(--terra-light);
+  font-size: 0.82rem;
+  font-weight: 500;
+  text-decoration: none;
+  border-bottom: 1px solid var(--terra-light);
+  padding-bottom: 2px;
+  transition: opacity 0.2s;
+}
+
+.ut-link:hover { opacity: 0.7; }
+
+.ut-right {
+  position: relative;
+}
+
+.ut-stationen {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.ut-station {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  padding: 16px 0;
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+}
+
+.ut-station:last-child { border-bottom: none; }
+
+.ut-station-num {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.8rem;
+  font-weight: 300;
+  color: var(--terra);
+  opacity: 0.5;
+  min-width: 36px;
+}
+
+.ut-station-name {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: white;
+}
+
+.ut-station-desc {
+  font-size: 0.75rem;
+  color: rgba(255,255,255,0.45);
+  margin-top: 2px;
+}
+
+/* ── FOOTER ── */
+footer {
+  background: var(--dark);
+  padding: 60px 80px 40px;
+}
+
+.footer-top {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1fr;
+  gap: 60px;
+  margin-bottom: 48px;
+  padding-bottom: 48px;
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+}
+
+.footer-brand {}
+
+.footer-logo {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.4rem;
+  font-weight: 600;
+  color: white;
+  margin-bottom: 12px;
+}
+
+.footer-tagline {
+  font-size: 0.82rem;
+  color: rgba(255,255,255,0.4);
+  line-height: 1.65;
+  max-width: 240px;
+}
+
+.footer-col-title {
+  font-size: 0.62rem;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--terra);
+  margin-bottom: 16px;
+}
+
+.footer-links {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.footer-links a {
+  font-size: 0.82rem;
+  color: rgba(255,255,255,0.5);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.footer-links a:hover { color: white; }
+
+.footer-bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.footer-copy {
+  font-size: 0.72rem;
+  color: rgba(255,255,255,0.25);
+}
+
+.footer-dot {
+  width: 5px; height: 5px;
+  border-radius: 50%;
+  background: var(--terra);
+}
+
+/* ── ANIMATIONS ── */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ── MOBILE ── */
+@media (max-width: 768px) {
+  nav { padding: 0 20px; }
+  .nav-links { display: none; }
+
+  .hero {
+    grid-template-columns: 1fr;
+    min-height: auto;
+  }
+
+  .hero-left { padding: 60px 24px 48px; }
+  .hero-right { padding: 48px 24px; min-height: 300px; }
+
+  .newsletter-strip {
+    grid-template-columns: 1fr;
+    padding: 40px 24px;
+    gap: 24px;
+  }
+
+  .nl-form { flex-direction: column; }
+  .nl-input { width: 100%; }
+
+  .projekte { padding: 60px 24px; }
+  .projekte-grid { grid-template-columns: 1fr; }
+  .projekte-personal { grid-template-columns: 1fr; }
+
+  .ueber-teaser {
+    grid-template-columns: 1fr;
+    padding: 60px 24px;
+    gap: 40px;
+  }
+
+  footer { padding: 48px 24px 32px; }
+  .footer-top { grid-template-columns: 1fr 1fr; gap: 32px; }
+  .footer-bottom { flex-direction: column; gap: 12px; text-align: center; }
+}
+
+.footer-social { display: flex; gap: 16px; align-items: center; }
+.social-icon { color: rgba(255,255,255,0.4); transition: color 0.2s; display: flex; align-items: center; text-decoration: none; }
+.social-icon:hover { color: #C47B55; }
+
+.nav-logo-wrap { display: flex; align-items: center; gap: 6px; text-decoration: none; }
+.nav-logo-img { width: 40px; height: 40px; object-fit: contain; }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="index.html" class="nav-logo-wrap"><img src="logo-ds.png" alt="" class="nav-logo-img"><span class="nav-logo">Daniel Schlichting</span></a>
+  <ul class="nav-links">
+    <li><a href="ueber-mich.html">Über mich</a></li>
+    <li><a href="projekte.html">Projekte</a></li>
+    <li><a href="newsletter.html">Newsletter</a></li>
+    <li><a href="archiv.html">Archiv</a></li>
+    <li><a href="kontakt.html">Kontakt</a></li>
+    <li><a href="newsletter.html" class="nav-cta">Schlicht Kommunal</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-left">
+    <div class="hero-eyebrow">Lecturer · Gründer · Kommunalmensch</div>
+    <h1 class="hero-title">
+      Kommunale Daseinsvorsorge<br>
+      ist der Kitt<br>
+      <em>unserer Gesellschaft.</em>
+    </h1>
+    <p class="hero-body">
+      Straßen, Kitas, Wasserversorgung, Feuerwehr – das sind keine abstrakten Verwaltungsaufgaben. Das sind Versprechen, die eine Gesellschaft ihren Mitmenschen gibt. Täglich. Von Menschen für Menschen.
+    </p>
+    <p class="hero-motto">Ich bin Daniel Schlichting. Ich unterrichte, gestalte und schreibe darüber – weil es richtig ist.</p>
+    <div class="hero-actions">
+      <a href="newsletter.html" class="btn-primary">Schlicht Kommunal lesen</a>
+      <a href="ueber-mich.html" class="btn-secondary">Mehr über mich →</a>
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="hero-quote">
+      Ich habe Verwaltung<br>gelernt, gelebt,<br>geprüft und gelehrt.
+      <strong>In dieser Reihenfolge.</strong>
+    </div>
+    <div class="hero-vita">
+      <div class="hero-vita-text">
+        <span>Verwaltungsakademie Bordesholm</span> · Dozent<br>
+        <span>SGK Schleswig-Holstein</span> · Referent<br>
+        <span>17 Jahre</span> · Gewerkschaftsengagement<br>
+        <span>Schleswig-Holstein</span> · Kommunalmensch
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- NEWSLETTER STRIP -->
+<div class="newsletter-strip reveal">
+  <div class="nl-info">
+    <div class="nl-label">Newsletter</div>
+    <div class="nl-title">Schlicht Kommunal</div>
+    <div class="nl-desc">Schlicht Kommunal · Monatlich. Eine Botschaft. Kein Spam.<br>Daseinsvorsorge heißt Gemeinschaft.</div>
+  </div>
+  <div class="nl-form">
+    <form id="sib-form-index" method="POST" action="https://438b0fee.sibforms.com/serve/MUIFAAWXAGqmWFfIoZdzlbLwC2biZpTgtIFVxNyZ83LeLBBj6oduQtuz5q54tCvYclwZi6042D0S6B--jGCYPtWsXW9vSa1_Z7Dqu6U3y1HJ9BJZ8Zmy-7JaU0yu83yDrtF3aTToao5o4hts2x4i22HR65MDHFXJGogd1I0YCGZ_ZHgiB2FoeSMESAmg4s_48oOSAWx9NBHuj2SvXg==" style="display:flex;gap:10px;align-items:center;">
+      <input type="text" name="EMAIL" placeholder="deine@email.de" class="nl-input" required style="padding:12px 18px;border:1px solid rgba(107,31,58,0.2);border-radius:4px;font-size:0.85rem;font-family:DM Sans,sans-serif;background:white;color:#1C1C1C;width:260px;">
+      <input type="text" name="email_address_check" value="" style="display:none;">
+      <input type="hidden" name="locale" value="de">
+      <input type="hidden" name="html_type" value="simple">
+      <button type="submit" class="nl-btn">Anmelden</button>
+    </form>
+  </div>
+</div>
+
+<!-- PROJEKTE -->
+<section class="projekte">
+  <div class="section-eyebrow reveal">Mit Menschen. Für Menschen. Auf Augenhöhe.</div>
+  <h2 class="section-title reveal">Projekte</h2>
+  <p class="section-body reveal">Egal, ob ich unterrichte, schreibe, sammle oder kandidiere – die Haltung dahinter ist immer dieselbe. Die Projekte sind verschieden. Der Mensch dahinter ist einer.</p>
+
+  <div class="projekte-grid reveal">
+    <a href="https://wissenskommune.de" class="projekt-card" target="_blank">
+      <span class="projekt-icon">📚</span>
+      <div class="projekt-name">Schlicht Wissen</div>
+      <div class="projekt-tagline">Schlicht Wissen · Für alle, die Kommune gestalten wollen.</div>
+      <div class="projekt-desc">Kommunale Praxis verständlich gemacht – strukturiert, praxisnah, von jemandem, der sie selbst kennt.</div>
+    </a>
+    <a href="https://www.instagram.com/danielschlichting.de" class="projekt-card" target="_blank">
+      <span class="projekt-icon">🗳️</span>
+      <div class="projekt-name">Schlicht Demokratie</div>
+      <div class="projekt-tagline">Schlicht Demokratie · Ab 2027.</div>
+      <div class="projekt-desc">Demokratie funktioniert nur, wenn Menschen sie verstehen und leben. Ab 2027 erkläre ich hier öffentlich, warum sie es wert ist.</div>
+    </a>
+    <a href="newsletter.html" class="projekt-card">
+      <span class="projekt-icon">✍️</span>
+      <div class="projekt-name">Schlicht Kommunal</div>
+      <div class="projekt-tagline">Schlicht Kommunal · Monatlich. Eine Botschaft. Kein Spam.</div>
+      <div class="projekt-desc">Ein Brief von einem Menschen an andere. Über Verwaltung, Politik und das Leben dazwischen.</div>
+    </a>
+  </div>
+
+  <p class="personal-label reveal">Weil Leben mehr ist als Arbeit.</p>
+
+  <div class="projekte-personal reveal">
+    <a href="https://meilenfuchs.info" class="projekt-card" target="_blank">
+      <span class="projekt-icon">🦊</span>
+      <div class="projekt-name">Schlicht Reisen</div>
+      <div class="projekt-sub">meilenfuchs.info</div>
+      <div class="projekt-tagline">Komfort muss kein Privileg sein.</div>
+      <div class="projekt-desc">Reisen ist meine Leidenschaft. Business Class ist keine Frage des Gehalts – sondern des Wissens.</div>
+    </a>
+    <a href="#" class="projekt-card">
+      <span class="projekt-icon">⚖️</span>
+      <div class="projekt-name">Schlicht im Lot</div>
+      <div class="projekt-sub">Gesundheit · Alltag · KI</div>
+      <div class="projekt-tagline">Ins Gleichgewicht kommen.</div>
+      <div class="projekt-desc">Ehrlich dokumentiert, wie ich mit KI-Unterstützung gesünder und ausgeglichener lebe.</div>
+    </a>
+    <a href="#" class="projekt-card">
+      <span class="projekt-icon">🎯</span>
+      <div class="projekt-name">Schlicht zusammen</div>
+      <div class="projekt-sub">Schlicht zusammen · VAB Bordesholm</div>
+      <div class="projekt-tagline">Gemeinschaft macht mehr daraus.</div>
+      <div class="projekt-desc">Seit über zwei Jahren an der Verwaltungsakademie. Bald auch digital verfügbar.</div>
+    </a>
+  </div>
+</section>
+
+<!-- ÜBER MICH TEASER -->
+<section class="ueber-teaser">
+  <div class="ut-left reveal">
+    <div class="ut-eyebrow">Über mich</div>
+    <h2 class="ut-title">
+      Ich habe Verwaltung<br>
+      <em>gelernt, gelebt,<br>geprüft und gelehrt.</em>
+    </h2>
+    <p class="ut-body">
+      Nicht der direkteste Weg. Aber immer der richtige. Vom Sozialpädagogischen Assistenten über die Kreisverwaltung und den Landesrechnungshof bis zur Verwaltungsakademie Bordesholm. Und parallel dazu: 17 Jahre Gewerkschaft, Kommunalpolitik, und die Überzeugung dass Gemeinschaft jemanden braucht der anpackt.
+    </p>
+    <a href="ueber-mich.html" class="ut-link">Meine Geschichte lesen →</a>
+  </div>
+  <div class="ut-right reveal">
+    <div class="ut-stationen">
+      <div class="ut-station">
+        <div class="ut-station-num">①</div>
+        <div>
+          <div class="ut-station-name">Lernen</div>
+          <div class="ut-station-desc">SPA · Verwaltungsfachangestellter · Diplom-Verwaltungswirt</div>
+        </div>
+      </div>
+      <div class="ut-station">
+        <div class="ut-station-num">②</div>
+        <div>
+          <div class="ut-station-name">Leben</div>
+          <div class="ut-station-desc">Kreisverwaltung · Universität Lübeck</div>
+        </div>
+      </div>
+      <div class="ut-station">
+        <div class="ut-station-num">③</div>
+        <div>
+          <div class="ut-station-name">Prüfen</div>
+          <div class="ut-station-desc">Kommunalaufsicht · Landesrechnungshof</div>
+        </div>
+      </div>
+      <div class="ut-station">
+        <div class="ut-station-num">④</div>
+        <div>
+          <div class="ut-station-name">Lehren</div>
+          <div class="ut-station-desc">VAB Bordesholm · SGK Schleswig-Holstein</div>
+        </div>
+      </div>
+      <div class="ut-station">
+        <div class="ut-station-num">⑤</div>
+        <div>
+          <div class="ut-station-name">Gestalten</div>
+          <div class="ut-station-desc">Feuerwehr · DLRG · Gewerkschaft · Kommunalpolitik</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-top">
+    <div class="footer-brand">
+      <div class="footer-logo">Daniel Schlichting</div>
+      <p class="footer-tagline">Lecturer, Gründer, Kommunalmensch.<br>Weil es richtig ist.</p>
+    </div>
+    <div>
+      <div class="footer-col-title">Seiten</div>
+      <ul class="footer-links">
+        <li><a href="ueber-mich.html">Über mich</a></li>
+        <li><a href="projekte.html">Projekte</a></li>
+        <li><a href="newsletter.html">Newsletter</a></li>
+    <li><a href="archiv.html">Archiv</a></li>
+        <li><a href="kontakt.html">Kontakt</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="footer-col-title">Projekte</div>
+      <ul class="footer-links">
+        <li><a href="https://wissenskommune.de" target="_blank">Schlicht Wissen</a></li>
+        <li><a href="https://meilenfuchs.info" target="_blank">Schlicht Reisen</a></li>
+        <li><a href="newsletter.html">Schlicht Kommunal</a></li>
+        <li><a href="#">Schlicht im Lot</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="footer-col-title">Rechtliches</div>
+      <ul class="footer-links">
+        <li><a href="impressum.html">Impressum</a></li>
+        <li><a href="datenschutz.html">Datenschutz</a></li>
+        <li><a href="kontakt.html">Kontakt</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    
+  <div class="footer-social">
+    <a href="https://www.instagram.com/danielschlichting.de" target="_blank" rel="noopener" class="social-icon" aria-label="Instagram">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
+    </a>
+    <a href="https://www.linkedin.com/in/daniel-schlichting-67a12716a" target="_blank" rel="noopener" class="social-icon" aria-label="LinkedIn">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7H10V9h4v2a6 6 0 0 1 6-3zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg>
+    </a>
+  
+    <a href="https://www.facebook.com/share/1CPQHWAY4w/" target="_blank" rel="noopener" class="social-icon" aria-label="Facebook">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+    </a>
+  </div>
+  <span class="footer-copy">© 2026 Daniel Schlichting · Lübeck, Schleswig-Holstein</span>
+    <div class="footer-dot"></div>
+    
+  <div class="footer-social">
+    <a href="https://www.instagram.com/danielschlichting.de" target="_blank" rel="noopener" class="social-icon" aria-label="Instagram">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
+    </a>
+    <a href="https://www.linkedin.com/in/daniel-schlichting-67a12716a" target="_blank" rel="noopener" class="social-icon" aria-label="LinkedIn">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7H10V9h4v2a6 6 0 0 1 6-3zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg>
+    </a>
+  
+    <a href="https://www.facebook.com/share/1CPQHWAY4w/" target="_blank" rel="noopener" class="social-icon" aria-label="Facebook">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+    </a>
+  </div>
+  <span class="footer-copy">Weil es richtig ist.</span>
+  </div>
+</footer>
+
+<script>
+// Scroll reveal
+const reveals = document.querySelectorAll('.reveal');
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach((entry, i) => {
+    if (entry.isIntersecting) {
+      setTimeout(() => entry.target.classList.add('visible'), i * 80);
+      observer.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.1 });
+reveals.forEach(el => observer.observe(el));
+
+// Nav scroll effect
+window.addEventListener('scroll', () => {
+  const nav = document.querySelector('nav');
+  if (window.scrollY > 50) {
+    nav.style.boxShadow = '0 2px 20px rgba(0,0,0,0.08)';
+  } else {
+    nav.style.boxShadow = 'none';
+  }
+});
+</script>
+
+</body>
+</html>
